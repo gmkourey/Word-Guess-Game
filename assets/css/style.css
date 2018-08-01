@@ -16,6 +16,9 @@ body {
 #reset-button {
     display:none;
 }
+#start-message {
+    display:block;
+}
 .subheading {
     margin-top:10px;
 }

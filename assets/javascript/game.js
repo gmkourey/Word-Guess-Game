@@ -22,8 +22,9 @@ function resetGame() {
     document.getElementById('picture').src = "assets/images/hangman.gif";   
     for (var i = 0; i < lengthOfWord; i++) {
         blankWord[i] = '_';
-    } 
+    }
     document.getElementById('reset-button').style.display = "none";
+    document.getElementById('start-message').style.display = "block";
 document.getElementById('word').innerHTML = blankWord.join(" ");
 document.getElementById('wins').innerHTML = "Wins: " + wins;
 document.getElementById('lose').innerHTML = "Losses: " + lose;
@@ -44,6 +45,7 @@ document.getElementById('lose').innerHTML = "Losses: " + lose;
 
 //Event listener for keystroke
 document.addEventListener('keypress', (event) => {
+    document.getElementById('start-message').style.display = "none";
     if(missedLetters.length < 6 && blankWord.join("") !==selection) {
     keyName = event.key;
     keyName = keyName.toLowerCase();
@@ -60,6 +62,7 @@ document.addEventListener('keypress', (event) => {
     if (!letterInWord) {
         missedLetters.push(keyName);
         document.getElementById('picture').src = imageArray[missedLetters.length];
+       
     }
 }
     if (blankWord.join("") == selection) {
@@ -69,7 +72,7 @@ document.addEventListener('keypress', (event) => {
 
     if (missedLetters.length == 6) {
         lose++;
-        document.getElementById('final-word').innerHTML = 'Your word was: ' + selection;
+        document.getElementById('final-word').innerHTML = 'Your word was: <h3 style="margin-top: 0px; color:green;">' + selection + "</h3>";
     }
 
     if (missedLetters.length == 6 || blankWord.join("") == selection) {

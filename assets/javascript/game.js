@@ -44,7 +44,7 @@ document.getElementById('lose').innerHTML = "Losses: " + lose;
 
 //Event listener for keystroke
 document.addEventListener('keypress', (event) => {
-    if(missedLetters.length < 6 && blankWord.length < (selection.length + 1)){
+    if(missedLetters.length < 6 && blankWord.join("") !==selection) {
     keyName = event.key;
     keyName = keyName.toLowerCase();
     letterInWord = false;

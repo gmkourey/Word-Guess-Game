@@ -33,7 +33,7 @@ document.getElementById('final-word').innerHTML = "";
 
 }
 
-//Creating string with no letters
+//Creating array with no letters (al dashes)
 for (var i = 0; i < lengthOfWord; i++) {
     blankWord[i] = '_';
 }
@@ -46,6 +46,7 @@ document.getElementById('lose').innerHTML = "Losses: " + lose;
 //Event listener for keystroke
 document.addEventListener('keypress', (event) => {
     document.getElementById('start-message').style.display = "none";
+    //Stopping the ability to have the game continue if someone has lost or won
     if(missedLetters.length < 6 && blankWord.join("") !==selection) {
     keyName = event.key;
     keyName = keyName.toLowerCase();
@@ -59,26 +60,28 @@ document.addEventListener('keypress', (event) => {
             blankWord[letterIndex] = keyName;
         }
     }
+    //If letter is not in the word
     if (!letterInWord) {
         missedLetters.push(keyName);
         document.getElementById('picture').src = imageArray[missedLetters.length];
        
     }
 }
+//Tracking a win and adding to wins
     if (blankWord.join("") == selection) {
         wins++;
 
     }
-
+//Tracking a loss and adding to losses
     if (missedLetters.length == 6) {
         lose++;
         document.getElementById('final-word').innerHTML = 'Your word was: <h3 style="margin-top: 0px; color:green;">' + selection + "</h3>";
     }
-
+//If you win or lose, showing the reset button
     if (missedLetters.length == 6 || blankWord.join("") == selection) {
         document.getElementById('reset-button').style.display = "block";
     }
-        
+//Updating presented information on page after each keystroke      
     document.getElementById('wins').innerHTML = "Wins: " + wins;
     document.getElementById('missed-letters').innerHTML = missedLetters.join(" ");
     document.getElementById('word').innerHTML = blankWord.join(" ");

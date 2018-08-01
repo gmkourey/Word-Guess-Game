@@ -7,18 +7,24 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <div class="container">
-    <h1>Hangman Game</h1>
-    <p>All About Food</p>
+        <div class="heading">
+    <h1 class="title">Hangman Game</h1>
+    <p class="subheading">All About Food</p>
 </div>
-    <h2 id="word"></h2>
+<div class="game-container">
+    <img id="picture" src="assets/images/hangman.gif">
+    <div class="small-game">
     <h2 id="final-word"></h2>
-    <h3 id="missed-letters"></h3>
+    <h2 id="word"></h2>
+    <div class="missed-letters">
+    <h3>Missed Letters</h3>
+    <h3 id="missed-letters">None yet...</h3>
+</div>
     <h3 id="wins"></h3>
     <h3 id="lose"></h3>
-    <img id="picture" src="assets/images/hangman.gif" height="250px" width="250px">
-    <button id="reset-button" onclick="resetGame()">Reset</button>
-
+    <button id="reset-button" onclick="resetGame()">Play Again</button>
+</div>
+</div>
     <script src="assets/javascript/game.js"></script>
 </body>
 </html>

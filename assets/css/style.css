@@ -3,7 +3,7 @@ body {
     background-size:cover;
     background-position-y: 30%;
 }
-.container {
+.heading {
     background-color: rgba(0,0,0,.8);
     padding:20px 50px;
     color:white;
@@ -15,4 +15,40 @@ body {
 }
 #reset-button {
     display:none;
+}
+.subheading {
+    margin-top:10px;
+}
+.title {
+    margin-bottom:10px;
+}
+img {
+    height:250px;
+    width:250px;
+    float:left;
+    margin-top:50px;
+}
+.small-game {
+    float:right;
+}
+.game-container {
+    margin: 0 auto;
+    width:600px;
+    background-color: rgba(255,255,255,.8);
+    padding:25px;
+    overflow:hidden;
+}
+.missed-letters {
+    color:white;
+    background-color:black;
+    padding:25px;
+    width:250px;
+    border-radius:3px;
+}
+button {
+    padding: 10px 20px;
+    background-color:black;
+    color:white;
+    border:none;
+    border-radius:3px;
 }

@@ -14,7 +14,7 @@ var wins = 0;
 var lose = 0;
 var imageArray = ["assets/images/hangman.gif", "assets/images/hangman-head.png","assets/images/hangman-body.png", "assets/images/hangman-arm.png",
 "assets/images/hangman-arms.png","assets/images/hangman-leg.png", "assets/images/hangman-dead.png"];
-
+//function for game reset when button is pressed
 function resetGame() {
     randomNumber = Math.floor(Math.random() * 20);
     selection = foods[randomNumber];
@@ -31,24 +31,28 @@ document.getElementById('word').innerHTML = blankWord.join(" ");
 document.getElementById('wins').innerHTML = "Wins: " + wins;
 document.getElementById('lose').innerHTML = "Losses: " + lose;
 document.getElementById('missed-letters').innerHTML = missedLetters.join(" ");
+document.getElementById('final-word').innerHTML = "";
 
 }
 
-
-// Setting array to be all underscores and creating a string to show with no letters
-
-//Showing string with no letters
+//Creating string with no letters
 for (var i = 0; i < lengthOfWord; i++) {
     blankWord[i] = '_';
 }
+//Presenting initial information
 document.getElementById('word').innerHTML = blankWord.join(" ");
 document.getElementById('wins').innerHTML = "Wins: " + wins;
 document.getElementById('lose').innerHTML = "Losses: " + lose;
 
+
 //Event listener for keystroke
 document.addEventListener('keypress', (event) => {
+    if(missedLetters.length < 6 && blankWord.length < (selection.length + 1)){
     keyName = event.key;
+    keyName = keyName.toLowerCase();
+    console.log(keyName);
     letterInWord = false;
+    //Condition if to make game only run if the letter is unique
     if(missedLetters.indexOf(keyName) === -1 && blankWord.indexOf(keyName) === -1) {
     for (var i = 0; i < selection.length; i++) {
         if (selection[i] === keyName) {
@@ -70,14 +74,13 @@ document.addEventListener('keypress', (event) => {
     if (blankWord.join("") == selection) {
         console.log('You Won!');
         wins++;
+
     }
 
     if (missedLetters.length == 6) {
         console.log('You lose');
         lose++;
-        document.getElementById('final-word').innerHTML = selection;
-        
-
+        document.getElementById('final-word').innerHTML = 'Your word was: ' + selection;
     }
 
     if (missedLetters.length == 6 || blankWord.join("") == selection) {
@@ -88,4 +91,5 @@ document.addEventListener('keypress', (event) => {
     document.getElementById('missed-letters').innerHTML = missedLetters.join(" ");
     document.getElementById('word').innerHTML = blankWord.join(" ");
     document.getElementById('lose').innerHTML = "Losses: " + lose;
-  });
+}
+});

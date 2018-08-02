@@ -12,6 +12,7 @@ var wins = 0;
 var lose = 0;
 var imageArray = ["assets/images/hangman.gif", "assets/images/hangman-head.png","assets/images/hangman-body.png", "assets/images/hangman-arm.png",
 "assets/images/hangman-arms.png","assets/images/hangman-leg.png", "assets/images/hangman-dead.png"];
+var alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 //function for game reset when button is pressed
 function resetGame() {
     randomNumber = Math.floor(Math.random() * 20);
@@ -44,12 +45,13 @@ document.getElementById('lose').innerHTML = "Losses: " + lose;
 
 
 //Event listener for keystroke
-document.addEventListener('keypress', (event) => {
+document.onkeyup = function(event) {
     document.getElementById('start-message').style.display = "none";
-    //Stopping the ability to have the game continue if someone has lost or won
-    if(missedLetters.length < 6 && blankWord.join("") !==selection) {
     keyName = event.key;
     keyName = keyName.toLowerCase();
+    //Stopping the ability to have the game continue if someone has lost or won
+    if(missedLetters.length < 6 && blankWord.join("") !== selection && alphabet.indexOf(keyName) !== -1) {
+
     letterInWord = false;
     //Condition if to make game only run if the letter is unique
     if(missedLetters.indexOf(keyName) === -1 && blankWord.indexOf(keyName) === -1) {
@@ -87,4 +89,4 @@ document.addEventListener('keypress', (event) => {
     document.getElementById('word').innerHTML = blankWord.join(" ");
     document.getElementById('lose').innerHTML = "Losses: " + lose;
 }
-});
+};

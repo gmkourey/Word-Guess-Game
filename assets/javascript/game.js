@@ -1,5 +1,5 @@
 var foods = ["pizza", "chicken", "sushi", "steak", "banana", "strawberry", "pasta", "asparagus", "lobster",
- "crab", "sandwich", "brownie", "cookie", "cupcake", "eggs", "lasagna", "hamburger", "cheeseburger", "orange", "zuchinni"]
+ "crab", "sandwich", "brownie", "cookie", "cupcake", "eggs", "lasagna", "hamburger", "cheeseburger", "orange", "zucchini"]
 var randomNumber = Math.floor(Math.random() * 20);
 var selection = foods[randomNumber];
 var lengthOfWord = selection.length;

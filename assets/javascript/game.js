@@ -13,6 +13,13 @@ var lose = 0;
 var imageArray = ["assets/images/hangman.gif", "assets/images/hangman-head.png","assets/images/hangman-body.png", "assets/images/hangman-arm.png",
 "assets/images/hangman-arms.png","assets/images/hangman-leg.png", "assets/images/hangman-dead.png"];
 var alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+//Function to present win/loss and other info
+function presentInfo() {
+    document.getElementById('word').innerHTML = blankWord.join(" ");
+    document.getElementById('wins').innerHTML = "Wins: " + wins;
+    document.getElementById('lose').innerHTML = "Losses: " + lose;
+    document.getElementById('missed-letters').innerHTML = missedLetters.join(" ");
+    }
 //function for game reset when button is pressed
 function resetGame() {
     randomNumber = Math.floor(Math.random() * 20);
@@ -27,31 +34,26 @@ function resetGame() {
     document.getElementById('reset-button').style.display = "none";
     document.getElementById('start-message').style.display = "block";
 document.getElementById('word').innerHTML = blankWord.join(" ");
-document.getElementById('wins').innerHTML = "Wins: " + wins;
-document.getElementById('lose').innerHTML = "Losses: " + lose;
 document.getElementById('missed-letters').innerHTML = missedLetters.join(" ");
 document.getElementById('final-word').innerHTML = "";
 
 }
 
-//Creating array with no letters (al dashes)
+//Creating array with no letters (all dashes)
 for (var i = 0; i < lengthOfWord; i++) {
     blankWord[i] = '_';
 }
 //Presenting initial information
-document.getElementById('word').innerHTML = blankWord.join(" ");
-document.getElementById('wins').innerHTML = "Wins: " + wins;
-document.getElementById('lose').innerHTML = "Losses: " + lose;
 
-
+presentInfo();
 //Event listener for keystroke
 document.onkeyup = function(event) {
-    document.getElementById('start-message').style.display = "none";
+    
     keyName = event.key;
     keyName = keyName.toLowerCase();
     //Stopping the ability to have the game continue if someone has lost or won
     if(missedLetters.length < 6 && blankWord.join("") !== selection && alphabet.indexOf(keyName) !== -1) {
-
+        document.getElementById('start-message').style.display = "none";
     letterInWord = false;
     //Condition if to make game only run if the letter is unique
     if(missedLetters.indexOf(keyName) === -1 && blankWord.indexOf(keyName) === -1) {
@@ -83,10 +85,11 @@ document.onkeyup = function(event) {
     if (missedLetters.length == 6 || blankWord.join("") == selection) {
         document.getElementById('reset-button').style.display = "block";
     }
-//Updating presented information on page after each keystroke      
-    document.getElementById('wins').innerHTML = "Wins: " + wins;
-    document.getElementById('missed-letters').innerHTML = missedLetters.join(" ");
-    document.getElementById('word').innerHTML = blankWord.join(" ");
-    document.getElementById('lose').innerHTML = "Losses: " + lose;
+//Updating presented information on page after each keystroke  
+presentInfo();    
+    // document.getElementById('wins').innerHTML = "Wins: " + wins;
+    // document.getElementById('missed-letters').innerHTML = missedLetters.join(" ");
+    // document.getElementById('word').innerHTML = blankWord.join(" ");
+    // document.getElementById('lose').innerHTML = "Losses: " + lose;
 }
 };
